@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>TODO list</h1>
+    <a style="float: right" href="{% url 'todo:task-create' %}" class="btn btn-primary" >Add task</a>
+
+    <br>
+    <br>
+
+    {% if task_list %}
+        <table class="table">
+          <tr>
+            <th>Task</th>
+            <th>Tags</th>
+            <th>Created</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Change status</th>
+            <th>Update/Delete</th>
+          </tr>
+        {% for task in task_list %}
+          <tr>
+            <th>{{ task.content }}</th>
+            <th>
+                {% for tag in task.tags.all %}
+                    {{ tag.name }}
+                {% endfor %}
+            </th>
+            <th>{{ task.datetime }}</th>
+            <th>{{ task.deadline }}</th>
+            <th>{% if task.done %}
+                    <h6 style="color: green">Done</h6>
+                {% else %}
+                    <h6 style="color: red">Not done</h6>
+                {% endif %}
+            </th>
+            <th>{% if task.done %}
+                    <a href="{% url 'todo:task-undo' pk=task.id %}" class="btn btn-secondary" >Undo</a>
+                {% else %}
+                    <a href="{% url 'todo:task-complete' pk=task.id %}" class="btn btn-success" >Complete</a>
+                {% endif %}
+            </th>
+            <th>
+                <a href="{% url 'todo:task-update' pk=task.id %}" class="btn btn-secondary" >Update</a>
+                /
+                <a href="{% url 'todo:task-delete' pk=task.id %}" class="btn btn-secondary" >Delete</a>
+            </th>
+          </tr>
+        {% endfor %}
+
+        </table>
+    {% else %}
+        <h3>No tasks here!</h3>
+
+    {% endif %}
+
+
+{% endblock %}

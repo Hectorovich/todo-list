@@ -7,7 +7,7 @@ Django project for managing tasks with TODO List
 Python3 must be already installed
 
 ```shell
-git clone https://github.com/Hectorovich/todo-list
+git clone https://github.com/Hectorovich/todo-list/tree/dev
 cd todo-list
 python -m venv venv
 venv/scripts/activate

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ object|yesno:"Update info about task,Add new task to list" }}</h1>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input class="btn btn-primary" type="submit">
+    </form>
+
+{% endblock %}

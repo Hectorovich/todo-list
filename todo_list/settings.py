@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'crispy_forms',
+    'datetimepicker',
 ]
 
 MIDDLEWARE = [
